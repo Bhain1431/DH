@@ -2,7 +2,9 @@ import { Server } from 'hapi';
 
 const server = new Server();
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
+
+const env = process.env.NODE_ENV || 'development';
 
 server.connection({
   port, router: {
@@ -13,6 +15,7 @@ server.connection({
   }
 });
 
+;
 server.register([
   require('inert'),
   require('vision'),

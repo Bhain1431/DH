@@ -7,7 +7,8 @@
     "start:dev": "nodemon .",
     "test": "ava test",
     "build:transpile": "babel src -d dist -s inline",
-    "prepublish": "npm run build:transpile"
+    "prepublish": "npm run build:transpile",
+    "build": "npm run build : transpile"
   },
   "keywords": [],
   "author": "",
@@ -39,5 +40,18 @@
     "joi": "^10.2.2",
     "tv": "^6.1.0",
     "vision": "^4.1.1"
-  }
+  },
+  "description": "DH Pottery and Glass is the name of my project. It will be a website/app that will have my dad's site as well as a login to an interactive place to design your own pottery.",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bhain1431/DH.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bhain1431/DH/issues"
+  },
+  "homepage": "https://github.com/Bhain1431/DH#readme"
 }
