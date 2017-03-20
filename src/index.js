@@ -1,4 +1,8 @@
 import { Server } from 'hapi';
+import { MongoClient } from "mongodb";
+
+
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017
 
 const server = new Server();
 
@@ -22,6 +26,7 @@ server.register([
   require('blipp'),
   require('tv'),
   require('hapi-async-handler'),
+    require('mongodb'),
   {
     register: require('good'),
     options: {
