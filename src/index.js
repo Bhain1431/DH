@@ -1,8 +1,6 @@
 import { Server } from 'hapi';
-import { MongoClient } from "mongodb";
 
-
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017
+import {collection} from '../db';
 
 const server = new Server();
 

@@ -1,21 +1,31 @@
-const Hapi = require('hapi');
-const Boom = require('boom');
-const mongodb = require('mongodb');
+import {collection} from '../db';
+import Hapi from 'hapi';
 
-const plugin = (server, options, next)=> {
 
-    server.route({
-        method: 'POST',
-        path: 'orders',
 
+const plugin = function(server, options, next){
+
+    server.route( {
+        method: 'GET',
+        path:  '/{id}',
         handler(request, reply) {
-            const NewOrder = request.payload;
-            db.collection('mongodb').insertOne({NewOrder});
-            reply(NewOrder, {message: 'Order received'});
+            const db = request.mongo.db;
+            const ObjectID = request.mongo.ObjectID;
+
+            db.collection('collection').findOne({  _id: new ObjectID(request.params.id) }, function (err, result) {
+
+                if (err) {
+                    return reply(Boom.internal('Internal MongoDB error', err));
+                }
+
+                reply(result);
+            });
         }
     });
-    next();
 
+    server.start(function() {
+        console.log(`Server started at ${server.info.uri}`);
+    });
 };
 
 
