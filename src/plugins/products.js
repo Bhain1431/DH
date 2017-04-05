@@ -2,17 +2,16 @@ import {collection} from '../db';
 import Hapi from 'hapi';
 
 
+const plugin = function (server, options, next) {
 
-const plugin = function(server, options, next){
-
-    server.route( {
+    server.route({
         method: 'GET',
-        path:  '/{id}',
+        path: '/{id}',
         handler(request, reply) {
             const db = request.mongo.db;
             const ObjectID = request.mongo.ObjectID;
 
-            db.collection('collection').findOne({  _id: new ObjectID(request.params.id) }, function (err, result) {
+            db.collection('collection').findOne({_id: new ObjectID(request.params.id)}, function (err, result) {
 
                 if (err) {
                     return reply(Boom.internal('Internal MongoDB error', err));
@@ -23,9 +22,14 @@ const plugin = function(server, options, next){
         }
     });
 
-    server.start(function() {
+    server.start(function () {
         console.log(`Server started at ${server.info.uri}`);
     });
+};
+
+plugin.attributes = {
+    name: 'products',
+    version: '1.0.0'
 };
 
 
