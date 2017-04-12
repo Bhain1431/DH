@@ -1,30 +1,29 @@
 import {collection} from '../db';
 import Hapi from 'hapi';
+import Joi from "joi";
 
-
-const plugin = function (server, options, next) {
+const plugin = (server, options, next) => {
 
     server.route({
         method: 'GET',
-        path: '/{id}',
-        handler(request, reply) {
-            const db = request.mongo.db;
-            const ObjectID = request.mongo.ObjectID;
+        path: '/pottery',
+        config: {
+            tags: ["api"]
+        },
+        handler: {
+            async: async (request, reply) => {
 
-            db.collection('collection').findOne({_id: new ObjectID(request.params.id)}, function (err, result) {
+                const pottery = await collection("pottery");
 
-                if (err) {
-                    return reply(Boom.internal('Internal MongoDB error', err));
-                }
+                const curser = await pottery.find();
+                const result = await curser.toArray();
 
-                reply(result);
-            });
+
+                return reply(result);
+            }
         }
     });
-
-    server.start(function () {
-        console.log(`Server started at ${server.info.uri}`);
-    });
+    next();
 };
 
 plugin.attributes = {

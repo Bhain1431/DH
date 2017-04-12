@@ -10,22 +10,14 @@ const plugin = (server, options, next) => {
 
         config: {
             tags: ['api'],
-            // validate: {
-            //     payload: {
-            //
-            //         claytype: Joi.number(),
-            //         moldtype: Joi.number(),
-            //         glazetype: Joi.number(),
-            //         glass: Joi.number()
-            //     }
-            // }
+
         },
 
         handler: {
-             async (request, reply) => {
+             async: async (request, reply) => {
                 const order = request.payload;
                 console.log(order);
-
+//dad i want to boial noodles and not rawmen i also do not want sause plaease dad
                 const orders = await collection('orders');
                 const {insertedId} = await orders.insertOne(order);
 

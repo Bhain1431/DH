@@ -1,7 +1,7 @@
 import {Server} from 'hapi';
 
 import orders from './plugins/orders';
-
+import products from './plugins/products';
 const server = new Server();
 
 const port = process.env.PORT || 4000;
@@ -62,7 +62,7 @@ server.register([
             }
         }
     },
-
+    products,
     orders
 ], err => {
     if (err) throw err;
