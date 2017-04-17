@@ -1,6 +1,5 @@
 import {collection} from '../db';
-import {ObjectID} from 'mongodb';
-import Joi from 'joi';
+import nodemailer from 'nodemailer';
 
 const plugin = (server, options, next) => {
 
@@ -17,19 +16,37 @@ const plugin = (server, options, next) => {
              async: async (request, reply) => {
                 const order = request.payload;
                 console.log(order);
-//dad i want to boial noodles and not rawmen i also do not want sause plaease dad
                 const orders = await collection('orders');
                 const {insertedId} = await orders.insertOne(order);
-
                 if (insertedId) {
                     console.log(insertedId);
 
                     const result = await orders.findOne({_id: insertedId});
 
+                    let transporter = nodemailer.createTransport({
+                        service:'gmail',
+                        auth:{
+                            user: "bradhain@gmail.com",
+                            pass:'babybrad'
+                        }
+                    });
+                    let mailOptions = {
+                        from:'"Brad" bradhain@gmail.com',
+                        to:'doughain@gmail.com, bradhain@gmail.com',
+                        subject:'Order',
+                        text:'Order',
+                        html:`<b>${order}</b>`
+                    };
+                    transporter.sendMail(mailOptions,(error, info) =>{
+                        if(error) {
+                            console.log(error);
+                        }
+                        console.log('Message %s sent: %s', info.messageId,info.response);
+                    });
                     return reply(result);
                 }
+                 return reply({error: 'blah'});
 
-                return reply({error: 'blah'});
 
             }
         }
