@@ -26,10 +26,8 @@
   "devDependencies": {
     "ava": "^0.18.2",
     "babel-cli": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
     "babel-preset-pundits": "^2.0.3",
-    "nodemon": "^1.11.0",
-    "babel-register": "latest"
+    "nodemon": "^1.11.0"
   },
   "dependencies": {
     "blipp": "^2.3.0",
@@ -45,7 +43,9 @@
     "mongodb": "^2.2.24",
     "nodemailer": "^4.0.1",
     "tv": "^6.1.0",
-    "vision": "^4.1.1"
+    "vision": "^4.1.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-register": "latest"
   },
   "description": "DH Pottery and Glass is the name of my project. It will be a website/app that will have my dad's site as well as a login to an interactive place to design your own pottery.",
   "directories": {
