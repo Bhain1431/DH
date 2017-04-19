@@ -8,7 +8,11 @@
     "test": "ava test",
     "build:transpile": "babel src -d dist -s inline",
     "prepublish": "npm run build:transpile",
-    "build": "npm run build : transpile"
+    "build": "npm run build : transpile",
+    "deploy": ""
+  },
+  "engines": {
+    "node": "7.5.0"
   },
   "keywords": [],
   "author": "",

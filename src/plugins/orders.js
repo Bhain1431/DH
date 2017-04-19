@@ -35,7 +35,8 @@ const plugin = (server, options, next) => {
                         to:'doughain@gmail.com, bradhain@gmail.com',
                         subject:'Order',
                         text:'Order',
-                        html:`<b>${order}</b>`
+                        html:`<b><h1> claytype:${order.claytype}</h1> <h1> moldtype:${order.moldtype}</h1><h1>glazetype: ${order.glazetype}</h1></b>`
+
                     };
                     transporter.sendMail(mailOptions,(error, info) =>{
                         if(error) {
